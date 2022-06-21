@@ -1,25 +1,27 @@
 import ArticleContext from '../../context/Article/ArticleContext';
-import { useContext, useEffect, useState } from 'react';
-import { Container, Select, Option } from './Filter.styled';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Dropdown, SelectedItem, Content, Item, Arrow } from './Filter.styled';
 
 const Filter = () => {
   const [options, setOptions] = useState<string[]>(['all articles']);
-  const [searchValue, setSearchValue] = useState('all articles');
+  const [searchType, setSearchType] = useState('all articles');
+  const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
   const articlesContext = useContext(ArticleContext);
   const { filterArticles, clearFilter, articles } = articlesContext;
 
-  const handleChange = (event: any): any => {
-    setSearchValue(event.target.value);
+  const handleClick = (type: string): void => {
+    setSearchType(type);
+    setIsDropdownVisible(false);
   };
 
   useEffect(() => {
-    if (searchValue !== 'all articles') {
-      filterArticles(searchValue);
+    if (searchType !== 'all articles') {
+      filterArticles(searchType);
     } else {
       clearFilter();
     }
-  }, [searchValue]);
+  }, [searchType]);
 
   useEffect(() => {
     articles.map(({ type }) => {
@@ -28,17 +30,22 @@ const Filter = () => {
   }, [options]);
 
   return (
-    <Container>
-      Filter by Type
-      <Select onChange={handleChange} value={searchValue}>
-        {options &&
-          options.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-      </Select>
-    </Container>
+    <Dropdown>
+      <SelectedItem onClick={() => setIsDropdownVisible(!isDropdownVisible)}>
+        {searchType}
+        <Arrow />
+      </SelectedItem>
+      <Content isDropdownVisible={isDropdownVisible}>
+        {options.map(
+          (option) =>
+            option !== searchType && (
+              <Item key={option} onClick={() => handleClick(option)}>
+                {option}
+              </Item>
+            )
+        )}
+      </Content>
+    </Dropdown>
   );
 };
 

@@ -3,7 +3,7 @@ import device from './breakpoints';
 
 const Container = styled.div`
   display: grid;
-  gap: 3rem;
+  gap: 4rem;
   grid-template-columns: 1rem auto 1rem;
   grid-template-areas:
     '. filterType .'
