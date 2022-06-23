@@ -6,7 +6,7 @@ export const Content = styled.ul`
   font-size: 1rem;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
 
   bottom: 3rem;
   list-style-type: none;

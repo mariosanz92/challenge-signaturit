@@ -1,20 +1,18 @@
 import styled from 'styled-components';
 
 export const Dropdown = styled.div`
-  grid-area: filterType;
   justify-self: end;
   width: 7rem;
-  margin-top: 1rem;
+  background-color: white;
 `;
 
 export const SelectedItem = styled.div`
   position: relative;
-
   cursor: pointer;
   border: 0.2rem solid #dcdcdc;
   user-select: none;
   font-family: 'Lato', sans-serif;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   padding: 0.3rem;
 `;
 
@@ -26,7 +24,7 @@ export const Content = styled.div<{ isDropdownVisible: boolean }>`
   font-family: 'Lato', sans-serif;
   width: 7rem;
   box-shadow: 0.1rem 0.1rem 0.5rem #dcdcdc;
-  border-radius: 0 0 0.3rem 0.3rem;
+  border-radius: 0 0 0.5rem 0.5rem;
   z-index: 10;
 `;
 

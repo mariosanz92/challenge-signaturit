@@ -3,14 +3,14 @@ import Filter from '.';
 import ArticleContext from '../../context/Article/ArticleContext';
 
 const articles = [
-  { title: 'fistTitle', type: 'one type', description: 'a description', id: 1 },
-  { title: 'secondTitle', type: 'second type', description: 'a description', id: 2 },
+  { title: 'fistTitle', type: 'one type', text: 'a text', id: '1', date: '12/12/12' },
+  { title: 'secondTitle', type: 'second type', text: 'a text', id: '2', date: '12/12/12' },
 ];
 
 describe('Filter', () => {
   beforeEach(() => {
     render(
-      <ArticleContext.Provider value={{ articles, filtered: null, clearFilter: () => {} }}>
+      <ArticleContext.Provider value={{ articles, filtered: null, selectedArticle: null, clearFilter: () => {} }}>
         <Filter />
       </ArticleContext.Provider>
     );

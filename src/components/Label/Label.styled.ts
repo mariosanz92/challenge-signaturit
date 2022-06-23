@@ -6,7 +6,7 @@ const Container = styled.span`
   align-items: center;
   font-family: 'Lato', sans-serif;
   background-color: ${(props) => props.color || '#E0FFFF'};
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   width: 8rem;
   height: 2rem;
 `;

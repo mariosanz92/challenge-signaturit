@@ -16,4 +16,12 @@ export const Title = styled.h2`
   font-family: 'Lato', sans-serif;
 `;
 
-export const Type = styled.span``;
+export const Emoji = styled.p`
+  margin: 0;
+  padding: 0;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

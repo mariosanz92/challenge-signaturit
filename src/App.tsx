@@ -1,14 +1,17 @@
+import { Route, Routes } from 'react-router-dom';
+import ArticleDetail from './components/ArticleDetail';
 import Container from './App.styled';
-import ArticleList from './components/ArticleList';
-import Filter from './components/Filter';
+import ArticleSummary from './components/ArticleSummary';
 import ArticleState from './context/Article/ArticleState';
 
 const App = () => {
   return (
     <ArticleState>
       <Container>
-        <Filter />
-        <ArticleList />
+        <Routes>
+          <Route path="/" element={<ArticleSummary />} />
+          <Route path="/article/:id" element={<ArticleDetail />} />
+        </Routes>
       </Container>
     </ArticleState>
   );

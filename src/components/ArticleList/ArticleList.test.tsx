@@ -1,18 +1,24 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import ArticleList from '.';
 import IArticle from '../../interfaces/IArticle';
-
 import ArticleContext from '../../context/Article/ArticleContext';
+
+const mockedUsedNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  ...(jest.requireActual('react-router-dom') as any),
+  useNavigate: () => mockedUsedNavigate,
+}));
 
 describe('Article list', () => {
   const articles = [
-    { title: 'fistTitle', type: 'aType', description: 'a description', id: 1 },
-    { title: 'secondTitle', type: 'aType', description: 'a description', id: 2 },
+    { title: 'fistTitle', type: 'aType', text: 'a text', id: '1', date: 'Date' },
+    { title: 'secondTitle', type: 'aType', text: 'a text', id: '2', date: 'Date' },
   ];
 
   const renderArticleList = (articleList: IArticle[] = articles) => {
     render(
-      <ArticleContext.Provider value={{ articles: articleList, filtered: null }}>
+      <ArticleContext.Provider value={{ articles: articleList, filtered: null, selectedArticle: null }}>
         <ArticleList />
       </ArticleContext.Provider>
     );
@@ -33,17 +39,17 @@ describe('Article list', () => {
 
 describe('Article list Pagination', () => {
   const articles = [
-    { title: 'Title', type: 'aType', description: 'a description', id: 1 },
-    { title: 'Title', type: 'aType', description: 'a description', id: 2 },
-    { title: 'Title', type: 'aType', description: 'a description', id: 3 },
-    { title: 'Title', type: 'aType', description: 'a description', id: 4 },
-    { title: 'Title', type: 'aType', description: 'a description', id: 5 },
-    { title: 'Title', type: 'aType', description: 'a description', id: 6 },
+    { title: 'Title', type: 'aType', text: 'a text', id: '1', date: 'Date' },
+    { title: 'Title', type: 'aType', text: 'a text', id: '2', date: 'Date' },
+    { title: 'Title', type: 'aType', text: 'a text', id: '3', date: 'Date' },
+    { title: 'Title', type: 'aType', text: 'a text', id: '4', date: 'Date' },
+    { title: 'Title', type: 'aType', text: 'a text', id: '5', date: 'Date' },
+    { title: 'Title', type: 'aType', text: 'a text', id: '6', date: 'Date' },
   ];
 
   const renderArticleList = (articleList: IArticle[] = articles) => {
     render(
-      <ArticleContext.Provider value={{ articles: articleList, filtered: null }}>
+      <ArticleContext.Provider value={{ articles: articleList, filtered: null, selectedArticle: null }}>
         <ArticleList />
       </ArticleContext.Provider>
     );

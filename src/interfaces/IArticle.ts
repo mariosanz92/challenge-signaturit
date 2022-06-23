@@ -1,6 +1,8 @@
 export default interface IArticle {
   title: string;
-  description: string;
+  text?: string;
   type: string;
-  id: number;
+  image?: string;
+  date: string;
+  id: string;
 }

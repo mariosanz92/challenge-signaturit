@@ -25,7 +25,7 @@ const ArticleList = () => {
       setArticleList(articles);
     }
     setCurrentPage(1);
-  }, [filtered, articlesList]);
+  }, [filtered, articlesList, articles]);
 
   useEffect(() => {
     const numberOfPages = Math.ceil(articlesList.length / ARTICLE_PER_PAGE);
@@ -36,7 +36,7 @@ const ArticleList = () => {
   return (
     <Container>
       {currentArticles.map(({ title, type, id }) => (
-        <Article key={id} title={title} type={type} />
+        <Article key={id} title={title} type={type} id={id} />
       ))}
       {pageNumbers.length > 1 && <Pagination pageNumbers={pageNumbers} paginate={paginate} currentPage={currentPage} />}
     </Container>
