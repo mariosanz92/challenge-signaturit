@@ -29,11 +29,4 @@ describe('Article', () => {
     const aType = screen.getByText('Type: aType');
     expect(aType).toBeInTheDocument();
   });
-
-  test('not render button if is Simple type', () => {
-    renderArticle('Simple');
-    const aButton = screen.queryByRole('button', { name: 'Go to detail' });
-
-    expect(aButton).not.toBeInTheDocument();
-  });
 });

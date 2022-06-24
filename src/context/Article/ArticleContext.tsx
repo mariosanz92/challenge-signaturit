@@ -3,6 +3,7 @@ import IArticle from '../../interfaces/IArticle';
 
 interface IContextProps {
   articles: IArticle[];
+  selectedType?: string | null;
   selectedArticle: any;
   filtered: null | IArticle[];
   filterArticles?: any;
@@ -10,6 +11,7 @@ interface IContextProps {
   setArticleDetail?: any;
   addArticle?: any;
   deleteArticle?: any;
+  setType?: any;
 }
 
 const ArticleContext = createContext({} as IContextProps);

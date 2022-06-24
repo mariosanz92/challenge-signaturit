@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import IArticle from '../../interfaces/IArticle';
 
 const useValidation = (selectedType: string, newArticle: any) => {
   const [error, setError] = useState<any>({ message: '', status: true });

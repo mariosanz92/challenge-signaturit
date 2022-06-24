@@ -3,3 +3,4 @@ export const CLEAR_FILTER = 'CLEAR_FILTER';
 export const ARTICLE_DETAIL = 'ARTICLE_DETAIL';
 export const ADD_ARTICLE = 'ADD_ARTICLE';
 export const DELETE_ARTICLE = 'DELETE_ARTICLE';
+export const SET_TYPE = 'SELECTED_TYPE';

@@ -1,7 +1,7 @@
 import ArticleContext from './ArticleContext';
 import articles from '../../data/articles';
 import articleReducer from './ArticleReducer';
-import { FILTER_ARTICLES, CLEAR_FILTER, ARTICLE_DETAIL, ADD_ARTICLE, DELETE_ARTICLE } from './types';
+import { FILTER_ARTICLES, CLEAR_FILTER, ARTICLE_DETAIL, ADD_ARTICLE, DELETE_ARTICLE, SET_TYPE } from './types';
 import IArticle from '../../interfaces/IArticle';
 import { useReducer } from 'react';
 
@@ -14,6 +14,7 @@ const ArticleState = ({ children }: ArticleStateProps) => {
     articles,
     filtered: null,
     selectedArticle: null,
+    selectedType: 'all articles',
   };
 
   const [state, dispatch] = useReducer(articleReducer, initialState);
@@ -35,15 +36,20 @@ const ArticleState = ({ children }: ArticleStateProps) => {
   };
 
   const deleteArticle = (articleId: string) => {
-    console.log(articles);
     dispatch({ type: DELETE_ARTICLE, payload: articleId });
+  };
+
+  const setType = (type: string) => {
+    dispatch({ type: SET_TYPE, payload: type });
   };
   return (
     <ArticleContext.Provider
       value={{
+        selectedType: state.selectedType,
         articles: state.articles,
         filtered: state.filtered,
         selectedArticle: state.selectedArticle,
+        setType,
         filterArticles,
         clearFilter,
         setArticleDetail,

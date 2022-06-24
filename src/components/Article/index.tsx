@@ -36,7 +36,7 @@ const Article = ({ title, type, id }: ArticleProps) => {
       <Title>{title}</Title>
       <Content>
         <Label text={`Type: ${type}`} color={getLabelColor(type)} />
-        {type !== 'Simple' && <GenericButton handleClick={goToDetail} text="Go to detail" />}
+        <GenericButton handleClick={goToDetail} text="Go to detail" />
       </Content>
     </Container>
   );

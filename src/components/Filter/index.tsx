@@ -4,24 +4,29 @@ import { Dropdown, SelectedItem, Content, Item, Arrow } from './Filter.styled';
 
 const Filter = () => {
   const [options, setOptions] = useState<string[]>(['all articles']);
-  const [searchType, setSearchType] = useState('all articles');
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
   const articlesContext = useContext(ArticleContext);
-  const { filterArticles, clearFilter, articles } = articlesContext;
+  const { filterArticles, clearFilter, articles, selectedType, setType } = articlesContext;
 
   const handleClick = (type: string): void => {
-    setSearchType(type);
+    setType(type);
     setIsDropdownVisible(false);
   };
 
   useEffect(() => {
-    if (searchType !== 'all articles') {
-      filterArticles(searchType);
+    if (!selectedType) {
+      setType('all articles');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selectedType !== 'all articles') {
+      filterArticles(selectedType);
     } else {
       clearFilter();
     }
-  }, [searchType]);
+  }, [selectedType]);
 
   useEffect(() => {
     articles.map(({ type }) => {
@@ -32,13 +37,13 @@ const Filter = () => {
   return (
     <Dropdown>
       <SelectedItem onClick={() => setIsDropdownVisible(!isDropdownVisible)}>
-        {searchType}
+        {selectedType}
         <Arrow />
       </SelectedItem>
       <Content isDropdownVisible={isDropdownVisible}>
         {options.map(
           (option) =>
-            option !== searchType && (
+            option !== selectedType && (
               <Item key={option} onClick={() => handleClick(option)}>
                 {option}
               </Item>

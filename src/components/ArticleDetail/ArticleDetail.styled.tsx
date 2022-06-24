@@ -8,6 +8,7 @@ export const Container = styled.div`
   grid-template-columns: 1rem auto 1rem;
   grid-row-gap: 1rem;
   grid-template-areas:
+    '. nextArticle .'
     '. title .'
     '. text .'
     '. image .'
@@ -42,15 +43,15 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 
-export const GenericButtonStyled = styled(GenericButton)`
+export const GenericButtonDelete = styled(GenericButton)`
   grid-area: delete;
   max-width: 15rem;
   margin-left: auto;
   margin-right: 0;
 `;
 
-export const Content = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
+export const GenericButtonBack = styled(GenericButton)`
+  grid-area: nextArticle;
+  max-width: 15rem;
+  margin-right: 0;
 `;

@@ -1,5 +1,5 @@
 import IArticle from '../../interfaces/IArticle';
-import { FILTER_ARTICLES, CLEAR_FILTER, ARTICLE_DETAIL, ADD_ARTICLE, DELETE_ARTICLE } from './types';
+import { FILTER_ARTICLES, CLEAR_FILTER, ARTICLE_DETAIL, ADD_ARTICLE, DELETE_ARTICLE, SET_TYPE } from './types';
 
 const ArticleReducer = (
   state: { articles: IArticle[]; selectedType: string; filtered: any; selectedArticle: any },
@@ -38,6 +38,12 @@ const ArticleReducer = (
         ...state,
         articles: state.articles.filter((article: IArticle) => article.id !== action.payload),
         filtered: state.filtered && state.filtered.filter((article: IArticle) => article.id !== action.payload),
+      };
+
+    case SET_TYPE:
+      return {
+        ...state,
+        selectedType: action.payload,
       };
 
     default:
