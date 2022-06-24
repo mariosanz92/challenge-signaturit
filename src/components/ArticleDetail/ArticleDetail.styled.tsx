@@ -24,20 +24,25 @@ export const Container = styled.div`
 `;
 export const Title = styled.h1`
   grid-area: title;
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin: 0;
   font-family: 'Lato', sans-serif;
+  @media ${device.tablet} {
+    font-size: 4rem;
+  }
 `;
 export const Text = styled.p`
   grid-area: text;
 
   font-family: 'Lato', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+  }
 `;
 
 export const Image = styled.img`
   grid-area: image;
-
   width: 100%;
   height: 20rem;
   object-fit: cover;
@@ -52,6 +57,9 @@ export const GenericButtonDelete = styled(GenericButton)`
 
 export const GenericButtonBack = styled(GenericButton)`
   grid-area: nextArticle;
-  max-width: 15rem;
+  max-width: 12rem;
   margin-right: 0;
+  @media ${device.tablet} {
+    max-width: 15rem;
+  }
 `;

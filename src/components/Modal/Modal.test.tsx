@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import Modal from '.';
 
 describe('Option', () => {
-  const renderModal = (click?: () => void) => {
+  const renderModal = (click: () => void = () => {}) => {
     render(
       <Modal title="aTitle" onClose={click}>
         <h1>Hello Signaturit</h1>
@@ -21,14 +21,6 @@ describe('Option', () => {
     const aChildren = screen.getByRole('heading', { level: 1, name: 'Hello Signaturit' });
 
     expect(aChildren).toBeInTheDocument();
-  });
-
-  test('should not show close button', () => {
-    renderModal();
-
-    const closeButton = screen.queryByRole('button');
-
-    expect(closeButton).not.toBeInTheDocument();
   });
 
   test('should click on close button', () => {

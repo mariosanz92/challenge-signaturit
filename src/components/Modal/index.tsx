@@ -1,15 +1,21 @@
+import { useRef } from 'react';
+import useOnClickOutside from '../../useOnClickOutside';
 import { Container, Title, Close } from './Modal.styled';
 
 type ModalProps = {
   children: JSX.Element;
   title: string;
-  onClose?: () => void;
+  onClose: () => void;
 };
 
 const Modal = ({ title, children, onClose }: ModalProps) => {
+  const ref = useRef<any>();
+
+  useOnClickOutside(ref, () => onClose());
+
   return (
-    <Container>
-      {onClose && <Close onClick={onClose}>&#215;</Close>}
+    <Container ref={ref}>
+      <Close onClick={onClose}>&#215;</Close>
       <Title>{title}</Title>
       {children}
     </Container>

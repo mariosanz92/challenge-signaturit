@@ -6,7 +6,7 @@ import ArticleContext from '../../context/Article/ArticleContext';
 const mockedUsedNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
-  ...(jest.requireActual('react-router-dom') as any),
+  ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -18,7 +18,20 @@ describe('Article list', () => {
 
   const renderArticleList = (articleList: IArticle[] = articles) => {
     render(
-      <ArticleContext.Provider value={{ articles: articleList, filtered: null, selectedArticle: null }}>
+      <ArticleContext.Provider
+        value={{
+          articles: articleList,
+          filtered: null,
+          selectedArticle: null,
+          selectedType: '',
+          filterArticles: () => {},
+          clearFilter: () => {},
+          setArticleDetail: () => {},
+          addArticle: () => {},
+          deleteArticle: () => {},
+          setType: () => {},
+        }}
+      >
         <ArticleList />
       </ArticleContext.Provider>
     );
@@ -49,7 +62,20 @@ describe('Article list Pagination', () => {
 
   const renderArticleList = (articleList: IArticle[] = articles) => {
     render(
-      <ArticleContext.Provider value={{ articles: articleList, filtered: null, selectedArticle: null }}>
+      <ArticleContext.Provider
+        value={{
+          articles: articleList,
+          filtered: null,
+          selectedArticle: null,
+          selectedType: '',
+          filterArticles: () => {},
+          clearFilter: () => {},
+          setArticleDetail: () => {},
+          addArticle: () => {},
+          deleteArticle: () => {},
+          setType: () => {},
+        }}
+      >
         <ArticleList />
       </ArticleContext.Provider>
     );

@@ -1,18 +1,22 @@
 import styled from 'styled-components';
+import device from '../../breakpoints';
 
 export const Content = styled.ul`
   display: flex;
-  position: absolute;
+  justify-self: center;
   font-size: 1rem;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border-radius: 0.5rem;
-
   bottom: 3rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
   border: 0.2rem solid #dcdcdc;
+
+  @media ${device.laptop} {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
 `;
 export const Item = styled.li<{ currentPage: boolean }>`
   padding: 0.5rem 1rem;

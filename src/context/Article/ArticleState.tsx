@@ -4,13 +4,14 @@ import articleReducer from './ArticleReducer';
 import { FILTER_ARTICLES, CLEAR_FILTER, ARTICLE_DETAIL, ADD_ARTICLE, DELETE_ARTICLE, SET_TYPE } from './types';
 import IArticle from '../../interfaces/IArticle';
 import { useReducer } from 'react';
+import IInitialState from '../../interfaces/IInitialState';
 
 type ArticleStateProps = {
   children: JSX.Element;
 };
 
 const ArticleState = ({ children }: ArticleStateProps) => {
-  const initialState: any = {
+  const initialState: IInitialState = {
     articles,
     filtered: null,
     selectedArticle: null,

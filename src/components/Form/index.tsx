@@ -36,7 +36,6 @@ const Form = ({ types, onSubmit }: FormProps) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     checkValidation(selectedType);
-
     setSubmit(true);
   };
 
@@ -72,7 +71,7 @@ const Form = ({ types, onSubmit }: FormProps) => {
 
           {isNotSimple && <Textarea placeholder="text" name="text" onChange={handleChange} />}
 
-          <Date type="date" placeholder="Nombre" name="date" onChange={handleChange} />
+          <Date type="date" name="date" onChange={handleChange} />
           <GenericButton text="Create Article" type="submit" />
         </FormContainer>
       )}

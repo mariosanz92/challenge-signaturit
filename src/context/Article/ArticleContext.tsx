@@ -3,15 +3,15 @@ import IArticle from '../../interfaces/IArticle';
 
 interface IContextProps {
   articles: IArticle[];
-  selectedType?: string | null;
-  selectedArticle: any;
+  selectedType: string;
+  selectedArticle: IArticle | null;
   filtered: null | IArticle[];
-  filterArticles?: any;
-  clearFilter?: any;
-  setArticleDetail?: any;
-  addArticle?: any;
-  deleteArticle?: any;
-  setType?: any;
+  filterArticles: (value: string) => void;
+  clearFilter: () => void;
+  setArticleDetail: (value: string) => void;
+  addArticle: any;
+  deleteArticle: (value: string) => void;
+  setType: (value: string) => void;
 }
 
 const ArticleContext = createContext({} as IContextProps);

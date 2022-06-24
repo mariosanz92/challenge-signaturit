@@ -4,7 +4,7 @@ import Article from '.';
 const mockedUsedNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
-  ...(jest.requireActual('react-router-dom') as any),
+  ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -28,5 +28,11 @@ describe('Article', () => {
     renderArticle();
     const aType = screen.getByText('Type: aType');
     expect(aType).toBeInTheDocument();
+  });
+
+  test('renders a button', () => {
+    renderArticle();
+    const aButton = screen.getByRole('button', { name: /go to detail/i });
+    expect(aButton).toBeInTheDocument();
   });
 });

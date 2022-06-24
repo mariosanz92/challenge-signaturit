@@ -10,6 +10,7 @@ export const SelectedItem = styled.div`
   position: relative;
   cursor: pointer;
   border: 0.2rem solid #dcdcdc;
+
   user-select: none;
   font-family: 'Lato', sans-serif;
   border-radius: 0.5rem;
@@ -19,6 +20,7 @@ export const SelectedItem = styled.div`
 export const Content = styled.div<{ isDropdownVisible: boolean }>`
   display: ${(props) => (props.isDropdownVisible ? 'block' : 'none')};
   position: absolute;
+  animation: showFilter 0.5s;
   cursor: pointer;
   user-select: none;
   font-family: 'Lato', sans-serif;
@@ -26,6 +28,15 @@ export const Content = styled.div<{ isDropdownVisible: boolean }>`
   box-shadow: 0.1rem 0.1rem 0.5rem #dcdcdc;
   border-radius: 0 0 0.5rem 0.5rem;
   z-index: 10;
+  max-height: 100%;
+  @keyframes showFilter {
+    from {
+      max-height: 0%;
+    }
+    to {
+      max-height: 100%;
+    }
+  }
 `;
 
 export const Item = styled.div`

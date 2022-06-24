@@ -1,13 +1,18 @@
 import ArticleContext from '../../context/Article/ArticleContext';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Dropdown, SelectedItem, Content, Item, Arrow } from './Filter.styled';
+import useOnClickOutside from '../../useOnClickOutside';
 
 const Filter = () => {
   const [options, setOptions] = useState<string[]>(['all articles']);
+  const ref = useRef<any>();
+
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
   const articlesContext = useContext(ArticleContext);
   const { filterArticles, clearFilter, articles, selectedType, setType } = articlesContext;
+
+  useOnClickOutside(ref, () => setIsDropdownVisible(false));
 
   const handleClick = (type: string): void => {
     setType(type);
@@ -40,7 +45,7 @@ const Filter = () => {
         {selectedType}
         <Arrow />
       </SelectedItem>
-      <Content isDropdownVisible={isDropdownVisible}>
+      <Content ref={ref} isDropdownVisible={isDropdownVisible}>
         {options.map(
           (option) =>
             option !== selectedType && (

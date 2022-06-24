@@ -1,24 +1,25 @@
 import { useEffect, useState } from 'react';
 
 const useValidation = (selectedType: string, newArticle: any) => {
-  const [error, setError] = useState<any>({ message: '', status: true });
+  const [error, setError] = useState<{ message: string; status: boolean }>({ message: '', status: true });
 
   useEffect(() => {
     setError({ message: '', status: true });
   }, [selectedType]);
 
   const checkImageValidation = (urlImage: string) => {
-    const isValidImage = urlImage && urlImage.match(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim) !== null;
+    const isValidImage: string | boolean =
+      urlImage && urlImage.match(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim) !== null;
 
     if (!isValidImage && urlImage !== '') {
       setError({ message: 'Image field does not have a valid URL', status: true });
     }
   };
 
-  const checkValidation = (name: string): any => {
+  const checkValidation = (name: string): void => {
     setError({ message: '', status: false });
 
-    const emptyNewArticle = Object.keys(newArticle).length === 0;
+    const emptyNewArticle: boolean = Object.keys(newArticle).length === 0;
     emptyNewArticle && setError({ message: 'Empty fields are not allowed', status: true });
 
     const types: {
@@ -37,7 +38,6 @@ const useValidation = (selectedType: string, newArticle: any) => {
       }
     });
   };
-
   return { error, checkValidation };
 };
 

@@ -10,7 +10,7 @@ const ArticleDetail = () => {
   const navigate = useNavigate();
 
   const removeArticle = () => {
-    deleteArticle(selectedArticle.id);
+    deleteArticle(selectedArticle!.id);
     navigate(`/`);
   };
 

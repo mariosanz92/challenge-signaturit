@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import ArticleList from '.';
 import ArticleContext from '../../context/Article/ArticleContext';
 import IArticle from '../../interfaces/IArticle';
@@ -6,7 +6,7 @@ import IArticle from '../../interfaces/IArticle';
 const mockedUsedNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
-  ...(jest.requireActual('react-router-dom') as any),
+  ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -15,7 +15,20 @@ describe('Article Detail', () => {
 
   const renderDetail = (anArticle: IArticle = article) => {
     render(
-      <ArticleContext.Provider value={{ articles: [anArticle], filtered: null, selectedArticle: anArticle }}>
+      <ArticleContext.Provider
+        value={{
+          articles: [anArticle],
+          filtered: null,
+          selectedArticle: anArticle,
+          selectedType: '',
+          filterArticles: () => {},
+          clearFilter: () => {},
+          setArticleDetail: () => {},
+          addArticle: () => {},
+          deleteArticle: () => {},
+          setType: () => {},
+        }}
+      >
         <ArticleList />
       </ArticleContext.Provider>
     );
@@ -62,11 +75,31 @@ describe('Article Detail', () => {
     expect(backButton).toBeInTheDocument();
   });
 
-  test('should render a button to delete article', () => {
+  test('should render a modal when click in button to delete', () => {
     renderDetail();
 
     const deleteButton = screen.getByRole('button', { name: /delete article/i });
 
-    expect(deleteButton).toBeInTheDocument();
+    fireEvent.click(deleteButton);
+
+    const modal = screen.getByLabelText('modal');
+
+    expect(modal).toBeInTheDocument();
+  });
+
+  test('should cancel action of delete if click in cancel', () => {
+    renderDetail();
+
+    const deleteButton = screen.getByRole('button', { name: /delete article/i });
+
+    fireEvent.click(deleteButton);
+
+    const modal = screen.getByLabelText('modal');
+
+    const cancelButton = screen.getByRole('button', { name: /cancel/i });
+
+    fireEvent.click(cancelButton);
+
+    expect(modal).not.toBeInTheDocument();
   });
 });

@@ -9,10 +9,12 @@ type OptionProps = {
 
 const Option = ({ types, setSelectedType, selectedType }: OptionProps) => {
   const setChosenType = (event: ChangeEvent<HTMLInputElement>) => {
-    if (selectedType === event.target.value) {
+    const type: string = event.target.value;
+
+    if (selectedType === type) {
       setSelectedType('');
     } else {
-      setSelectedType(event.target.value);
+      setSelectedType(type);
     }
   };
   return (

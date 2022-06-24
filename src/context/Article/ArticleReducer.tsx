@@ -2,7 +2,7 @@ import IArticle from '../../interfaces/IArticle';
 import { FILTER_ARTICLES, CLEAR_FILTER, ARTICLE_DETAIL, ADD_ARTICLE, DELETE_ARTICLE, SET_TYPE } from './types';
 
 const ArticleReducer = (
-  state: { articles: IArticle[]; selectedType: string; filtered: any; selectedArticle: any },
+  state: { articles: IArticle[]; selectedType: string; filtered: IArticle[] | null; selectedArticle: any },
   action: { type: string; payload?: any }
 ) => {
   switch (action.type) {

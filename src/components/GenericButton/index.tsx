@@ -5,7 +5,7 @@ type GenericButtonProps = {
   handleClick?: () => void;
   type?: 'button' | 'submit' | 'reset' | undefined;
   color?: string;
-  className?: any;
+  className?: string;
 };
 
 const GenericButton = ({ text, handleClick, type, color, className }: GenericButtonProps) => (
