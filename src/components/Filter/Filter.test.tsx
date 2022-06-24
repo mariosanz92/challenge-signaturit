@@ -1,18 +1,20 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Filter from '.';
-import ArticleContext from '../../context/Article/ArticleContext';
+import ArticleState from '../../context/Article/ArticleState';
 
 const articles = [
   { title: 'fistTitle', type: 'one type', text: 'a text', id: '1', date: '12/12/12' },
   { title: 'secondTitle', type: 'second type', text: 'a text', id: '2', date: '12/12/12' },
 ];
 
+jest.mock('../../data/articles', () => articles);
+
 describe('Filter', () => {
   beforeEach(() => {
     render(
-      <ArticleContext.Provider value={{ articles, filtered: null, selectedArticle: null, clearFilter: () => {} }}>
+      <ArticleState>
         <Filter />
-      </ArticleContext.Provider>
+      </ArticleState>
     );
   });
 
@@ -21,7 +23,7 @@ describe('Filter', () => {
     expect(filter).toBeInTheDocument();
   });
 
-  test('renders types', () => {
+  test('render types', () => {
     const filter = screen.getByText('all articles');
 
     fireEvent.click(filter);
