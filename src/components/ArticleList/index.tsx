@@ -2,21 +2,16 @@ import ArticleContext from '../../context/Article/ArticleContext';
 import { useContext, useEffect, useState } from 'react';
 import Article from '../Article';
 import Container from './ArticleList.styled';
-import IArticle from '../../interfaces/IArticle';
+import { IArticle } from '../../interfaces/IArticle';
 import Pagination from '../Pagination';
+import usePagination from './usePagination';
 
 const ArticleList = () => {
-  const ARTICLE_PER_PAGE = 5;
   const { articles, filtered } = useContext(ArticleContext);
   const [articlesList, setArticleList] = useState<IArticle[]>(articles);
-  const [pageNumbers, setPageNumbers] = useState<number[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const { selectedType } = useContext(ArticleContext);
 
-  const indexOfLastArticle = currentPage * ARTICLE_PER_PAGE;
-  const indexOfFisrtArticle = indexOfLastArticle - ARTICLE_PER_PAGE;
-  const currentArticles = articlesList.slice(indexOfFisrtArticle, indexOfLastArticle);
-
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const { currentArticles, pageNumbers, paginate, currentPage, setCurrentPage } = usePagination(articlesList);
 
   useEffect(() => {
     if (filtered) {
@@ -24,14 +19,11 @@ const ArticleList = () => {
     } else {
       setArticleList(articles);
     }
-    setCurrentPage(1);
   }, [filtered, articlesList, articles]);
 
   useEffect(() => {
-    const numberOfPages = Math.ceil(articlesList.length / ARTICLE_PER_PAGE);
-    const listOfNumbers = Array.from(Array(numberOfPages), (_, index) => index + 1);
-    setPageNumbers(listOfNumbers);
-  }, [articlesList]);
+    setCurrentPage(1);
+  }, [selectedType]);
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import IArticle from './IArticle';
+import { IArticle } from './IArticle';
 
 export default interface IInitialState {
   articles: IArticle[];

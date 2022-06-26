@@ -1,7 +1,16 @@
 import { useContext, useState } from 'react';
 import ArticleContext from '../../context/Article/ArticleContext';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { Container, Title, Text, Image, GenericButtonDelete, GenericButtonBack } from './ArticleDetail.styled';
+import {
+  Container,
+  Title,
+  Text,
+  Image,
+  GenericButtonDelete,
+  GenericButtonBack,
+  Date,
+  Content,
+} from './ArticleDetail.styled';
 import DeleteArticle from '../DeleteArticle';
 
 const ArticleDetail = () => {
@@ -23,7 +32,10 @@ const ArticleDetail = () => {
           <Title>{selectedArticle.title}</Title>
           <Text>{selectedArticle.text}</Text>
           {selectedArticle.image && <Image src={selectedArticle.image} />}
-          <GenericButtonDelete text="Delete Article" handleClick={() => setShowModal(!showModal)} color="#F08080" />
+          <Content>
+            <Date>{selectedArticle.date}</Date>
+            <GenericButtonDelete text="Delete Article" handleClick={() => setShowModal(!showModal)} color="#F08080" />
+          </Content>
           <GenericButtonBack text="Back to summary" handleClick={() => navigate(`/`)} />
           {showModal && <DeleteArticle setShowModal={setShowModal} removeArticle={removeArticle} />}
         </Container>

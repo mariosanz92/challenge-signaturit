@@ -9,7 +9,7 @@ type ModalProps = {
 };
 
 const Modal = ({ title, children, onClose }: ModalProps) => {
-  const ref = useRef<any>();
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useOnClickOutside(ref, () => onClose());
 

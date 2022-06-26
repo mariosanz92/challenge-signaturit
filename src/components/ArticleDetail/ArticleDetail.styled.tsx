@@ -12,7 +12,7 @@ export const Container = styled.div`
     '. title .'
     '. text .'
     '. image .'
-    '. delete .';
+    '. wrapper .';
 
   @media ${device.tablet} {
     grid-template-columns: 3rem auto 3rem;
@@ -49,10 +49,23 @@ export const Image = styled.img`
 `;
 
 export const GenericButtonDelete = styled(GenericButton)`
-  grid-area: delete;
   max-width: 15rem;
-  margin-left: auto;
-  margin-right: 0;
+`;
+
+export const Date = styled.p`
+  margin-top: 0;
+  padding: 0.3rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  background-color: #cdcdcd;
+  border-radius: 1rem;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  grid-area: wrapper;
 `;
 
 export const GenericButtonBack = styled(GenericButton)`

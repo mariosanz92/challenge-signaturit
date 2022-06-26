@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import device from '../../breakpoints';
 
 export const Container = styled.div.attrs(() => ({
   'aria-label': 'modal',
@@ -9,13 +10,17 @@ export const Container = styled.div.attrs(() => ({
   position: fixed;
   width: auto;
   animation: visible 1s;
-  padding: 3rem;
+  padding: 1rem;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 0.1rem 0.1rem 0.5rem #dcdcdc;
+
+  @media ${device.tablet} {
+    padding: 3rem;
+  }
 
   @keyframes visible {
     from {

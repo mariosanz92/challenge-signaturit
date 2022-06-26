@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import ArticleList from '.';
-import IArticle from '../../interfaces/IArticle';
+import { IArticle } from '../../interfaces/IArticle';
 import ArticleContext from '../../context/Article/ArticleContext';
 
 const mockedUsedNavigate = jest.fn();
@@ -25,7 +25,6 @@ describe('Article list', () => {
           selectedArticle: null,
           selectedType: '',
           filterArticles: () => {},
-          clearFilter: () => {},
           setArticleDetail: () => {},
           addArticle: () => {},
           deleteArticle: () => {},
@@ -69,7 +68,6 @@ describe('Article list Pagination', () => {
           selectedArticle: null,
           selectedType: '',
           filterArticles: () => {},
-          clearFilter: () => {},
           setArticleDetail: () => {},
           addArticle: () => {},
           deleteArticle: () => {},

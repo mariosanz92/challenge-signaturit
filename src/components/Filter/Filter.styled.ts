@@ -27,7 +27,6 @@ export const Content = styled.div<{ isDropdownVisible: boolean }>`
   width: 7rem;
   box-shadow: 0.1rem 0.1rem 0.5rem #dcdcdc;
   border-radius: 0 0 0.5rem 0.5rem;
-  z-index: 10;
   max-height: 100%;
   @keyframes showFilter {
     from {

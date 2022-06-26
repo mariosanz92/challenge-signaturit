@@ -1,4 +1,4 @@
-import IArticle from '../interfaces/IArticle';
+import { IArticle } from '../interfaces/IArticle';
 
 const articles: IArticle[] = [
   {

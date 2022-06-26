@@ -3,17 +3,16 @@ import useValidation from './useValidation';
 
 describe('useValidation', () => {
   test('should show Empty field error', () => {
-    const { result } = renderHook(() => useValidation('Simple', { title: '', date: '' }));
+    const { result } = renderHook(() => useValidation({ title: '', text: '', date: '', id: '', type: '' }));
     act(() => {
-      result.current.checkValidation('Simple');
+      const currentError = result.current.checkValidation('Simple');
+      expect(currentError.message).toEqual('Empty fields are not allowed');
     });
-    const errorMessage = result.current.error.message;
-    expect(errorMessage).toEqual('Empty fields are not allowed');
   });
 
   test('should show URL not valid mesage', () => {
     const { result } = renderHook(() =>
-      useValidation('Advanced', {
+      useValidation({
         title: 'title',
         text: 'text',
         date: 'date',
@@ -23,15 +22,14 @@ describe('useValidation', () => {
       })
     );
     act(() => {
-      result.current.checkValidation('Advanced');
+      const currentError = result.current.checkValidation('Advanced');
+      expect(currentError.message).toEqual('Image field does not have a valid URL');
     });
-    const errorMessage = result.current.error.message;
-    expect(errorMessage).toEqual('Image field does not have a valid URL');
   });
 
-  test('should show URL not valid mesage', () => {
+  test('should show URL not valid message', () => {
     const { result } = renderHook(() =>
-      useValidation('Advanced', {
+      useValidation({
         title: 'title',
         text: 'text',
         date: 'date',
@@ -41,9 +39,8 @@ describe('useValidation', () => {
       })
     );
     act(() => {
-      result.current.checkValidation('Advanced');
+      const currentError = result.current.checkValidation('Advanced');
+      expect(currentError.message).toEqual('');
     });
-    const errorStatus = result.current.error.status;
-    expect(errorStatus).toEqual(false);
   });
 });

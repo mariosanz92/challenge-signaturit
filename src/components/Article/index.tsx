@@ -26,7 +26,7 @@ const Article = ({ title, type, id }: ArticleProps) => {
     }
   };
 
-  const goToDetail = () => {
+  const goToDetail = (): void => {
     navigate(`/article/${id}`);
     setArticleDetail(id);
   };

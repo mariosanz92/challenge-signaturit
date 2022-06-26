@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import IArticle from '../../interfaces/IArticle';
+import { IArticle } from '../../interfaces/IArticle';
 
 interface IContextProps {
   articles: IArticle[];
@@ -7,9 +7,8 @@ interface IContextProps {
   selectedArticle: IArticle | null;
   filtered: null | IArticle[];
   filterArticles: (value: string) => void;
-  clearFilter: () => void;
   setArticleDetail: (value: string) => void;
-  addArticle: any;
+  addArticle: (value: IArticle) => void;
   deleteArticle: (value: string) => void;
   setType: (value: string) => void;
 }

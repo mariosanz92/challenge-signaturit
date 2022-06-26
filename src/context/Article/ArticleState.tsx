@@ -1,8 +1,8 @@
 import ArticleContext from './ArticleContext';
 import articles from '../../data/articles';
 import articleReducer from './ArticleReducer';
-import { FILTER_ARTICLES, CLEAR_FILTER, ARTICLE_DETAIL, ADD_ARTICLE, DELETE_ARTICLE, SET_TYPE } from './types';
-import IArticle from '../../interfaces/IArticle';
+import { FILTER_ARTICLES, ARTICLE_DETAIL, ADD_ARTICLE, DELETE_ARTICLE, SET_TYPE } from './types';
+import { IArticle } from '../../interfaces/IArticle';
 import { useReducer } from 'react';
 import IInitialState from '../../interfaces/IInitialState';
 
@@ -22,10 +22,6 @@ const ArticleState = ({ children }: ArticleStateProps) => {
 
   const filterArticles = (type: string) => {
     dispatch({ type: FILTER_ARTICLES, payload: type });
-  };
-
-  const clearFilter = () => {
-    dispatch({ type: CLEAR_FILTER });
   };
 
   const setArticleDetail = (id: string) => {
@@ -52,7 +48,6 @@ const ArticleState = ({ children }: ArticleStateProps) => {
         selectedArticle: state.selectedArticle,
         setType,
         filterArticles,
-        clearFilter,
         setArticleDetail,
         addArticle,
         deleteArticle,

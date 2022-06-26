@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import ArticleList from '.';
 import ArticleContext from '../../context/Article/ArticleContext';
-import IArticle from '../../interfaces/IArticle';
+import { IArticle } from '../../interfaces/IArticle';
 
 const mockedUsedNavigate = jest.fn();
 
@@ -22,7 +22,6 @@ describe('Article Detail', () => {
           selectedArticle: anArticle,
           selectedType: '',
           filterArticles: () => {},
-          clearFilter: () => {},
           setArticleDetail: () => {},
           addArticle: () => {},
           deleteArticle: () => {},
@@ -56,6 +55,14 @@ describe('Article Detail', () => {
     const anImage = screen.getByRole('img');
 
     expect(anImage).toHaveAttribute('src', 'an image');
+  });
+
+  test('renders the date of an article', () => {
+    renderDetail();
+
+    const aDate = screen.getByText(/date/i);
+
+    expect(aDate).toBeInTheDocument();
   });
 
   test('should not render the image of an article when is not advanced type', () => {

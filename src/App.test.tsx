@@ -14,7 +14,7 @@ const articles = [
 jest.mock('./data/articles', () => articles);
 
 describe('App', () => {
-  test('add a new article', () => {
+  test('add an article', () => {
     render(<App />, { wrapper: MemoryRouter });
 
     const addArticleButton = screen.getByRole('button', { name: /add article/i });
@@ -39,7 +39,7 @@ describe('App', () => {
     expect(getListByButton).toHaveLength(5);
   });
 
-  test('delete an article', async () => {
+  test('delete an article', () => {
     render(<App />, { wrapper: MemoryRouter });
 
     const gotToDetailButton = screen.getAllByRole('button', { name: /go to detail/i });

@@ -12,7 +12,7 @@ export const Content = styled.ul`
   padding: 0;
   border: 0.2rem solid #dcdcdc;
 
-  @media ${device.laptop} {
+  @media ${device.desktop} {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;

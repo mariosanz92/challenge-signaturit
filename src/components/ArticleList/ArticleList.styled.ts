@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const Container = styled.ul`
   display: grid;
-
   grid-area: listitem;
   gap: 2rem;
   margin: 0;

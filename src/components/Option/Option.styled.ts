@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import device from '../../breakpoints';
 
 export const TextType = styled.span`
   font-family: 'Lato', sans-serif;
@@ -6,7 +7,10 @@ export const TextType = styled.span`
 
 export const Options = styled.div`
   display: flex;
-  column-gap: 5rem;
+  column-gap: 0.2rem;
+  @media ${device.tablet} {
+    column-gap: 5rem;
+  }
 `;
 
 export const Type = styled.div`
@@ -32,6 +36,10 @@ export const Checkbox = styled.input`
   height: 100%;
   opacity: 0;
   cursor: pointer;
+
+  &:hover + ${Content} {
+    background-color: #cdcdcd;
+  }
   &:checked + ${Content} {
     background-color: #cdcdcd;
   }

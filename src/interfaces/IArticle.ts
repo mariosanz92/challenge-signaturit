@@ -1,4 +1,4 @@
-export default interface IArticle {
+export interface IArticle {
   title: string;
   text?: string;
   type: string;
@@ -6,3 +6,5 @@ export default interface IArticle {
   date: string;
   id: string;
 }
+
+export const emptyArticle = { title: '', text: '', date: '', id: '', type: '' };

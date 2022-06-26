@@ -5,12 +5,12 @@ import useOnClickOutside from '../../useOnClickOutside';
 
 const Filter = () => {
   const [options, setOptions] = useState<string[]>(['all articles']);
-  const ref = useRef<any>();
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
   const articlesContext = useContext(ArticleContext);
-  const { filterArticles, clearFilter, articles, selectedType, setType } = articlesContext;
+  const { filterArticles, articles, selectedType, setType } = articlesContext;
 
   useOnClickOutside(ref, () => setIsDropdownVisible(false));
 
@@ -20,18 +20,8 @@ const Filter = () => {
   };
 
   useEffect(() => {
-    if (!selectedType) {
-      setType('all articles');
-    }
-  }, []);
-
-  useEffect(() => {
-    if (selectedType !== 'all articles') {
-      filterArticles(selectedType);
-    } else {
-      clearFilter();
-    }
-  }, [selectedType]);
+    filterArticles(selectedType);
+  }, [selectedType, articles]);
 
   useEffect(() => {
     articles.map(({ type }) => {
